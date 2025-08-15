@@ -169,11 +169,12 @@ NSUInteger const MTIRenderPipelineMaximumColorAttachmentCount = 8;
 //        colorAttachmentDescriptor.blendingEnabled = NO;
         colorAttachmentDescriptor.blendingEnabled = YES;
         colorAttachmentDescriptor.rgbBlendOperation = MTLBlendOperationAdd;
-        colorAttachmentDescriptor.alphaBlendOperation = MTLBlendOperationAdd;
-        colorAttachmentDescriptor.destinationRGBBlendFactor = MTLBlendFactorOne;
-        colorAttachmentDescriptor.destinationAlphaBlendFactor = MTLBlendFactorOne;
         colorAttachmentDescriptor.sourceRGBBlendFactor = MTLBlendFactorOne;
+        colorAttachmentDescriptor.destinationRGBBlendFactor = MTLBlendFactorOneMinusSourceColor;
+        
+        colorAttachmentDescriptor.alphaBlendOperation = MTLBlendOperationAdd;
         colorAttachmentDescriptor.sourceAlphaBlendFactor = MTLBlendFactorOne;
+        colorAttachmentDescriptor.destinationAlphaBlendFactor = MTLBlendFactorOneMinusSourceColor;
         
         renderPipelineDescriptor.colorAttachments[index] = colorAttachmentDescriptor;
     }
