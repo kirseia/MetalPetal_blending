@@ -857,7 +857,14 @@ __attribute__((objc_subclassing_restricted))
     NSParameterAssert(configuration);
     MTLRenderPipelineColorAttachmentDescriptor *colorAttachmentDescriptor = [[MTLRenderPipelineColorAttachmentDescriptor alloc] init];
     colorAttachmentDescriptor.pixelFormat = configuration.outputPixelFormat;
-    colorAttachmentDescriptor.blendingEnabled = NO;
+//    colorAttachmentDescriptor.blendingEnabled = NO;
+    colorAttachmentDescriptor.blendingEnabled = YES;
+    colorAttachmentDescriptor.rgbBlendOperation = MTLBlendOperationAdd;
+    colorAttachmentDescriptor.alphaBlendOperation = MTLBlendOperationAdd;
+    colorAttachmentDescriptor.destinationRGBBlendFactor = MTLBlendFactorOne;
+    colorAttachmentDescriptor.destinationAlphaBlendFactor = MTLBlendFactorOne;
+    colorAttachmentDescriptor.sourceRGBBlendFactor = MTLBlendFactorOne;
+    colorAttachmentDescriptor.sourceAlphaBlendFactor = MTLBlendFactorOne;
     return [[MTIMultilayerCompositeKernelState alloc] initWithContext:context colorAttachmentDescriptor:colorAttachmentDescriptor rasterSampleCount:configuration.rasterSampleCount error:error];
 }
 
